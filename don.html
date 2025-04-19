@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>التبرع لدعم فلسطين - صوت فلسطين | Voice of Palestine</title>
+  <link rel="stylesheet" href="style1.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div id="video-container">
+    <video autoplay muted loop id="bg-video">
+      <source src="assets/background.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="overlay"></div>
+ 
+  <header>
+    <div class="container">
+      <h1>صوت فلسطين <span>| Voice of Palestine</span></h1>
+        <nav>
+          <ul>
+            <li><a href="home.html"><i class="fas fa-home"></i> الرئيسية / Home</a></li>
+            <li><a href="home.html#gallery"><i class="fas fa-images"></i> الصور / Gallery</a></li>
+            <li><a href="home.html#video"><i class="fas fa-video"></i> فيديو / Video</a></li>
+            <li><a href="home.html#articles"><i class="fas fa-newspaper"></i> مقالات / Articles</a></li>
+            <li><a href="boy.html"><i class="fas fa-ban"></i> منتجات المقاطعة /boycott-products</a></li>
+            <li><a href="don.html"><i class="fa fa-credit-card"></i> تبرع /donation</a></li>
+            <li><a href="home.html#ai"><i class="fas fa-robot"></i> اسأل فلسطين/ask palastine</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+
+  <section class="donation-section">
+    <div class="container">
+      <h2>تبرع لدعم فلسطين</h2>
+      <p>كل مساهمة مالية تساعد في دعم الشعب الفلسطيني وتسهم في تقديم المساعدات الإنسانية والطبية للمحتاجين. تبرعك اليوم يصنع فرقاً لغداً أفضل.</p>
+      
+      <div class="donation-options">
+        <div class="donation-type active" data-type="one-time">
+          <i class="fas fa-hand-holding-heart"></i>
+          <span>تبرع لمرة واحدة</span>
+        </div>
+        <div class="donation-type" data-type="monthly">
+          <i class="fas fa-sync-alt"></i>
+          <span>تبرع شهري</span>
+        </div>
+      </div>
+
+      <form id="donation-form" action="process-donation.php" method="post">
+        <input type="hidden" name="donation_type" id="donation_type" value="one-time">
+        
+        <div class="amount-options">
+          <div class="amount-option" data-amount="10">$10</div>
+          <div class="amount-option" data-amount="25">$25</div>
+          <div class="amount-option" data-amount="50">$50</div>
+          <div class="amount-option" data-amount="100">$100</div>
+          <div class="amount-option custom">
+            <input type="number" id="custom-amount" name="custom_amount" placeholder="مبلغ آخر">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="donor-name">الاسم الكامل:</label>
+          <input type="text" id="donor-name" name="donor_name" placeholder="أدخل اسمك" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">البريد الإلكتروني:</label>
+          <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
+        </div>
+
+        <div class="payment-section">
+          <h3>معلومات الدفع</h3>
+          
+          <div class="form-group">
+            <label for="card-number">رقم البطاقة:</label>
+            <div class="input-icon">
+              <input type="text" id="card-number" name="card_number" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+              <i class="far fa-credit-card"></i>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="expiry-date">تاريخ الانتهاء:</label>
+              <input type="text" id="expiry-date" name="expiry_date" placeholder="MM/YY" required>
+            </div>
+            
+            <div class="form-group half">
+              <label for="cvv">CVV:</label>
+              <div class="input-icon">
+                <input type="text" id="cvv" name="cvv" placeholder="XXX" required>
+                <i class="fas fa-info-circle" title="رمز الأمان المكون من 3 أرقام على ظهر البطاقة"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="donation-note">
+          <p>جميع التبرعات آمنة ومشفرة. المعلومات الشخصية محمية وفق سياسة الخصوصية.</p>
+        </div>
+
+        <button type="submit" class="btn">
+          <i class="fas fa-heart"></i> تبرع الآن
+        </button>
+      </form>
+
+      <div class="donation-info">
+        <div class="info-item">
+          <i class="fas fa-shield-alt"></i>
+          <span>تبرع آمن ومضمون</span>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-hand-holding-medical"></i>
+          <span>دعم مباشر للمحتاجين</span>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-certificate"></i>
+          <span>شفافية كاملة في استخدام التبرعات</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 صوت فلسطين - جميع الحقوق محفوظة.</p>
+      <div class="social-icons">
+        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-button">
+    <i class="fas fa-life-ring"></i>
+  </div>
+
+  <script src="donation.js"></script>
+</body>
+</html>
