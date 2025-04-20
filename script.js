@@ -1,49 +1,45 @@
-// === script.js ===
-
-// FRONTEND CHAT SCRIPT - Modified to work properly
-
-// Wait until page is fully loaded
 window.addEventListener("DOMContentLoaded", () => {
   const sendBtn = document.getElementById("sendBtn");
   const userInput = document.getElementById("userInput");
   const chatlog = document.getElementById("chatLog");
 
-  // Enable send button
   sendBtn.disabled = false;
   sendBtn.style.opacity = 1;
   sendBtn.style.cursor = "pointer";
 
-  // Event listeners
   sendBtn.addEventListener("click", handleMessage);
   userInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") handleMessage();
   });
 
-  // Main message handler
   async function handleMessage() {
     const message = userInput.value.trim();
     if (!message) return;
 
     appendMessage("user", message);
     userInput.value = "";
-    appendMessage("ai", "جاري التحميل...");
+    appendMessage("ai", detectLang(message) === "ar" ? "جاري البحث..." : "Searching...");
 
     try {
-      const response = await fetch("/api/ask-palestine", {        method: "POST",
+      const response = await fetch("/api/ask-palestine", {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: message }),
       });
 
       const data = await response.json();
-      const reply = data.answer || "عذرًا، حدث خطأ في الإجابة.";
+      const reply = data.answer || (detectLang(message) === "ar"
+        ? "عذرًا، لم أتمكن من العثور على إجابة."
+        : "Sorry, I couldn’t find an answer.");
+
       updateLastAIMessage(reply);
     } catch (error) {
-      updateLastAIMessage("حدث خطأ في الاتصال بالذكاء الاصطناعي.");
-      console.error(error);
+      updateLastAIMessage(detectLang(message) === "ar"
+        ? "حدث خطأ في الاتصال بالخادم."
+        : "There was an error connecting to the server.");
     }
   }
 
-  // Append message to chat
   function appendMessage(sender, text) {
     const messageEl = document.createElement("div");
     messageEl.classList.add("message", sender);
@@ -52,15 +48,24 @@ window.addEventListener("DOMContentLoaded", () => {
     chatlog.scrollTop = chatlog.scrollHeight;
   }
 
-  // Update last AI message
   function updateLastAIMessage(newText) {
     const aiMessages = chatlog.querySelectorAll(".message.ai");
     if (aiMessages.length) {
       aiMessages[aiMessages.length - 1].textContent = newText;
     }
   }
-});
 
+  function detectLang(text) {
+    return /[\u0600-\u06FF]/.test(text) ? "ar" : "en";
+  }
+});
+const suggestionButtons = document.querySelectorAll("#suggestions button");
+suggestionButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    userInput.value = button.textContent;
+    handleMessage();
+  });
+});
 
 // === gallery.js ===
 document.addEventListener("DOMContentLoaded", () => {
