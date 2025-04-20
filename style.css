@@ -986,3 +986,23 @@
       max-width: 90%;
     }
   }
+  .suggestions {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .suggestions button {
+    background-color: #4f0000;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .suggestions button:hover {
+    background-color: #cce0ff;
+  }
+  
